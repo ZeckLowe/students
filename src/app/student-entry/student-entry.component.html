@@ -1,0 +1,102 @@
+<div id="data-entry">
+    <table id="table-entry">
+        <tr>
+            <th colspan="2"  [ngStyle]="{'text-align': 'center'}">
+                <span>Student Information Data Entry</span>
+            </th>
+        </tr>
+        <tr>
+           <!-- student ID -->
+           <th><label for="id">Student ID</label></th>  
+           <td><input type="text" id="id" [(ngModel)]="studID"></td>
+        </tr>
+        <tr>
+            <!-- student first name -->
+            <th><label for="fname">First Name</label></th>
+            <td><input type="text" id="fname" [(ngModel)]="studFirstName"></td>
+        </tr>
+        <tr>
+            <!-- student middle name -->
+            <th><label for="mname">Middle Name</label></th>
+            <td><input type="text" id="mname" [(ngModel)]="studMidName"></td>
+        </tr>
+        <tr>
+            <!-- student last name -->
+            <th><label for="lname">Last Name</label></th>
+            <td><input type="text" id="lname" [(ngModel)]="studLastName"></td>
+        </tr>
+        <tr>
+            <!-- program selection menu -->
+            <th><label for="program">Program</label></th>
+            <td>
+                <select name="" id="program" [(ngModel)]="selectedProgram">
+                    <option [ngValue]="null">---------- Select Program ----------</option>
+                    <option *ngFor="let program  of programs" [ngValue]="program">
+                        {{ program.progFullName }}
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <!-- college selection menu -->
+            <th><label for="college" >College</label></th>
+            <td>
+                <select name="" id="college" [(ngModel)]="selectedCollege">
+                    <option [ngValue]="null">----------- Select College -----------</option>
+                    <option *ngFor="let college  of colleges" [ngValue]="college">
+                        {{ college.colFullName }}
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="year">Year</label></th>
+            <td><input type="text" id="year" [(ngModel)]="studYear"></td>
+        </tr>
+        <tr>
+            <td colspan="2" [ngStyle]="{'text-align': 'center'}">
+                <button (click)="saveStudentInfo()" class="button btn-primary">
+                    Save
+                </button>
+
+                <button *ngIf="studentCollection.length > 0" (click)="printStudentEntries()" class="button btn-info">
+                    Print
+                </button>
+                
+                <button (click)="clearEntries()" class="button btn-primary">
+                    Clear Entries
+                </button>
+
+                <button *ngIf="studentCollection.length > 0" (click)="destroyCollection()" class="button btn-danger">
+                    Clear Dataset
+                </button>
+            </td>
+        </tr>
+    </table>
+
+    <table *ngIf="printable" id="table-listing">
+        <thead>
+         <tr>
+            <th>ID</th>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Middle Initial</th>
+            <th>Program Enrolled</th>
+            <th>College</th>
+            <th>Year</th>
+         </tr> 
+        </thead>
+        <tbody>
+         <tr *ngFor = "let student of studentCollection"> 
+             <td>{{ student.studID }}</td>
+             <td>{{ student.studLastName }}</td>
+             <td>{{ student.studFirstName }}</td>
+             <td>{{ student.studMidName.substr(0,1)+'.' }}</td>
+             <td>{{ getProgramName(student.studProgram.progID) }}</td>
+             <td>{{ getCollegeName(student.studCollege.colID, false) }}</td>
+             <td>{{ student.studYear }}</td>
+         </tr>
+        </tbody>
+    </table>  
+
+</div>
