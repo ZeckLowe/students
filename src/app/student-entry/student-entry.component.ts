@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentDataService } from '../student-data.service';
 
+import { Student } from '../models/studentModel';
+
 @Component({
   selector: 'app-student-entry',
   templateUrl: './student-entry.component.html',
@@ -15,7 +17,7 @@ export class StudentEntryComponent {
   response: any;
   showAddStudentForm: boolean = false;
   
-  studentData: student = {
+  studentData: Student = {
     studid: 0,
     studfirstname: '',
     studlastname: '',
@@ -60,13 +62,23 @@ export class StudentEntryComponent {
           alert('Error saving student ' +error);
         },
         complete: () => {
-          this.closeAddStudentForm();
-          this.getStudents();
+          // this.closeAddStudentForm();
+          // this.getStudents();
           alert('Successfully added the student');
         }
-      })
+      });
+    }else{
+      alert('Make sure your inputs are correct!')
     }
   }
 
-
+  public clearForm(){
+    this.studentData.studid = 0;
+    this.studentData.studfirstname = '';
+    this.studentData.studlastname = '';
+    this.studentData.studmidname ='';
+    this.studentData.studprogid = 0;
+    this.studentData.studcollid = 0;
+    this.studentData.studyear = 0;
+  }
 }
