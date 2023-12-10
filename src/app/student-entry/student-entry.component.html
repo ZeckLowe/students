@@ -1,102 +1,98 @@
-<div id="data-entry">
-    <table id="table-entry">
+<div class="table-list">
+    <h1>List of Student Information</h1>
+    <div *ngIf="errorMessage" class="error error-text">{{ errorMessage | json }}</div>
+    <button class="add-button" (click)="openAddStudentForm()">Add Student</button>
+    <table id="students-list" *ngIf="showStudentList">
+      <thead>
         <tr>
-            <th colspan="2"  [ngStyle]="{'text-align': 'center'}">
-                <span>Student Information Data Entry</span>
-            </th>
+          <th>Student ID</th>
+          <th>First Name</th>
+          <th>Middle Name</th>
+          <th>Last Name</th>
+          <th>College</th>
+          <th>Program</th>
+          <th>Year</th>
+          <th>Actions</th>
         </tr>
-        <tr>
-           <!-- student ID -->
-           <th><label for="id">Student ID</label></th>  
-           <td><input type="text" id="id" [(ngModel)]="studID"></td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of studentCollection">
+          <td>{{ student.studid }}</td>
+          <td>{{ student.studfirstname }}</td>
+          <td>{{ student.studmidname }}</td>
+          <td>{{ student.studlastname }}</td>
+          <td>{{ student.studcollid }}</td>
+          <td>{{ student.studprogid }}</td>
+          <td>{{ student.studyear }}</td>
+          <td>
+            <button (click)="showStudentDetails(selectedStudentID = student.studid)">Details</button>
+            <button (click)="showEditPage(selectedStudentID = student.studid)">Edit</button>
+            <button (click)="deleteStudent(selectedStudentID = student.studid)">Delete</button>
+          </td>
         </tr>
-        <tr>
-            <!-- student first name -->
-            <th><label for="fname">First Name</label></th>
-            <td><input type="text" id="fname" [(ngModel)]="studFirstName"></td>
+        <tr *ngIf="studentCollection.length < 1">
+          <td colspan="8" class="no-data">No Data Found</td>
         </tr>
-        <tr>
-            <!-- student middle name -->
-            <th><label for="mname">Middle Name</label></th>
-            <td><input type="text" id="mname" [(ngModel)]="studMidName"></td>
-        </tr>
-        <tr>
-            <!-- student last name -->
-            <th><label for="lname">Last Name</label></th>
-            <td><input type="text" id="lname" [(ngModel)]="studLastName"></td>
-        </tr>
-        <tr>
-            <!-- program selection menu -->
-            <th><label for="program">Program</label></th>
-            <td>
-                <select name="" id="program" [(ngModel)]="selectedProgram">
-                    <option [ngValue]="null">---------- Select Program ----------</option>
-                    <option *ngFor="let program  of programs" [ngValue]="program">
-                        {{ program.progFullName }}
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <!-- college selection menu -->
-            <th><label for="college" >College</label></th>
-            <td>
-                <select name="" id="college" [(ngModel)]="selectedCollege">
-                    <option [ngValue]="null">----------- Select College -----------</option>
-                    <option *ngFor="let college  of colleges" [ngValue]="college">
-                        {{ college.colFullName }}
-                    </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th><label for="year">Year</label></th>
-            <td><input type="text" id="year" [(ngModel)]="studYear"></td>
-        </tr>
-        <tr>
-            <td colspan="2" [ngStyle]="{'text-align': 'center'}">
-                <button (click)="saveStudentInfo()" class="button btn-primary">
-                    Save
-                </button>
-
-                <button *ngIf="studentCollection.length > 0" (click)="printStudentEntries()" class="button btn-info">
-                    Print
-                </button>
-                
-                <button (click)="clearEntries()" class="button btn-primary">
-                    Clear Entries
-                </button>
-
-                <button *ngIf="studentCollection.length > 0" (click)="destroyCollection()" class="button btn-danger">
-                    Clear Dataset
-                </button>
-            </td>
-        </tr>
+      </tbody>
     </table>
-
-    <table *ngIf="printable" id="table-listing">
-        <thead>
-         <tr>
-            <th>ID</th>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Middle Initial</th>
-            <th>Program Enrolled</th>
-            <th>College</th>
-            <th>Year</th>
-         </tr> 
-        </thead>
-        <tbody>
-         <tr *ngFor = "let student of studentCollection"> 
-             <td>{{ student.studID }}</td>
-             <td>{{ student.studLastName }}</td>
-             <td>{{ student.studFirstName }}</td>
-             <td>{{ student.studMidName.substr(0,1)+'.' }}</td>
-             <td>{{ getProgramName(student.studProgram.progID) }}</td>
-             <td>{{ getCollegeName(student.studCollege.colID, false) }}</td>
-             <td>{{ student.studYear }}</td>
-         </tr>
-        </tbody>
-    </table>  
-
-</div>
+  </div>
+  
+  <div *ngIf="showAddStudentForm" class="overlay">
+    <div class="popup-container">
+      <form name="form" #studentForm="ngForm" class="popup-form">
+      <table>
+        <tr>
+          <td><label for="studid">Student ID</label></td>
+          <td><input type="text" name="studid" [(ngModel)]="studentData.studid" required [ngModelOptions]="{standalone: true}"></td>
+        </tr>
+        <tr>
+          <td><label for="firstName">First Name</label></td>
+          <td><input type="text" name="studfirstname"  [(ngModel)]="studentData.studfirstname" required [ngModelOptions]="{standalone: true}"></td>
+        </tr>
+        <tr>
+          <td><label for="middleName">Middle Name</label></td>
+          <td><input type="text" name="studmidname" [(ngModel)]="studentData.studmidname" [ngModelOptions]="{standalone: true}"></td>
+        </tr>
+        <tr>
+          <td><label for="lastName">Last Name</label></td>
+          <td><input type="text" name="studlastname" [(ngModel)]="studentData.studlastname" required [ngModelOptions]="{standalone: true}"></td>
+        </tr>
+        <tr>
+          <td><label for="college">College</label></td>
+          <td>
+            <select id="college" name="college" [(ngModel)]="studentData.studcollid" required (change)="updatePrograms()">
+              <option value="" [ngValue]="null">-------------------------------------------------- Select College --------------------------------------------------</option>
+              <option *ngFor="let college of collegeCollection" [value]="college.collid">
+                {{ college.collfullname }}
+              </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="program">Program</label></td>
+          <td>
+            <select id="program" name="program" [(ngModel)]="studentData.studprogid" required >
+              <option value="" [ngValue]="null" >-------------------------------------------------- Select Program --------------------------------------------------</option>
+              <option *ngFor="let program of programCollection" [value]="program.progid">
+                {{ program.progfullname }}
+              </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="year">Year</label></td>
+          <td><input type="text" name="studyear" [(ngModel)]="studentData.studyear" required [ngModelOptions]="{standalone: true}"></td>
+        </tr>
+        <tr>
+          <td hidden></td>
+          <td colspan="2">
+            <button type="submit" class="cancel" (click)="closeAddStudentForm()">Cancel</button>
+            <button type="submit" class="clear" (click)="clearForm()">Clear Entries</button>
+            <button type="submit" class="submit" (click)="submitAddStudentForm()">Add Student</button>
+          </td>
+        </tr>
+      </table>  
+    </form>
+  </div>
+  
+  
