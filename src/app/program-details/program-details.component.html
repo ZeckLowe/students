@@ -1,0 +1,33 @@
+<div>
+    <table>
+        <tr>
+            <td>Program ID</td>
+            <td>{{programData.progid}}</td>
+        </tr>
+        <tr>
+            <td>Full Name</td>
+            <td>{{programData.progfullname}}</td>
+        </tr>
+        <tr>
+            <td>Short Name</td>
+            <td>{{programData.progshortname}}</td>
+        </tr>
+        <tr>
+            <td>College</td>
+            <td><input [(ngModel)]="programData.progcollid" disabled hidden>{{ collegeData.collfullname }}</td>
+        </tr>          
+        <tr>
+            <td>Department</td>
+            <td><input [(ngModel)]="programData.progcolldeptid" disabled hidden>{{ deptData.deptfullname }}</td>
+        </tr>
+        <tr>
+            <td hidden></td>
+            <td colspan="2">
+                <button (click)="handleBack()">Back</button>
+                <button (click)="deleteProgram(progid = programData.progid)">Delete</button>
+                <button (click)="showEditPage(programData.progid)">Edit</button>    
+            </td>
+        </tr>
+    </table>
+    
+</div>

@@ -1,0 +1,26 @@
+<div>
+    <table>
+        <tr>
+            <td>College ID</td>
+            <td><input type="text" [(ngModel)]="collegeData.collid" disabled></td>
+        </tr>
+        <tr>
+            <td>Full Name</td>
+            <td><input type="text" [(ngModel)]="collegeData.collfullname"></td>
+        </tr>
+        <tr>
+            <td>Short Name</td>
+            <td><input type="text" [(ngModel)]="collegeData.collshortname"></td>
+        </tr>
+        <tr>
+            <td hidden></td>
+            <td colspan="2">
+                <button (click)="handleBack()">Back</button>
+                <button (click)="deleteCollege(collid = collegeData.collid)">Delete</button>
+                <button (click)="updateCollegeInfo()">Update</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+

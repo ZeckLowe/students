@@ -1,0 +1,31 @@
+<div>
+    <table>
+        <tr>
+            <td>Department ID</td>
+            <td>{{deptData.deptid}}</td>
+        </tr>
+        <tr>
+            <td>Full Name</td>
+            <td>{{deptData.deptfullname}}</td>
+        </tr>
+        <tr>
+            <td>Short Name</td>
+            <td>{{deptData.deptshortname}}</td>
+        </tr>
+        <tr>
+            <td>College</td>
+            <td><input [(ngModel)]="deptData.deptcollid" disabled hidden>{{ collegeData.collfullname }}</td>
+        </tr>
+        <tr>
+            <td hidden></td>
+            <td colspan="2">
+                <button (click)="handleBack()">Back</button>
+                <button (click)="deleteDepartment(deptid = deptData.deptid)">Delete</button>
+                <button (click)="showEditPage(deptData.deptid)">Edit</button> 
+            </td>
+        </tr>
+    </table>
+    
+</div>
+
+

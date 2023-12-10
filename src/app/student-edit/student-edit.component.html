@@ -1,0 +1,54 @@
+<div>
+    <table>
+        <tr>
+            <td>Student ID</td>
+            <td><input type="text" [(ngModel)]="studentData.studid" disabled></td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td><input type="text" [(ngModel)]="studentData.studfirstname" required></td>
+        </tr>
+        <tr>
+            <td>Middle Name</td>
+            <td><input type="text" [(ngModel)]="studentData.studmidname"></td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td><input type="text" [(ngModel)]="studentData.studlastname" required></td>
+        </tr>
+        <tr>
+            <td><label for="college">College</label></td>
+            <td>
+              <select id="college" name="college" [(ngModel)]="studentData.studcollid" required (change)="updatePrograms()">
+                <option *ngFor="let college of collegeCollection" [value]="college.collid">
+                  {{ college.collfullname }}
+                </option>
+              </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="program">Program</label></td>
+            <td>
+              <select id="program" name="program" [(ngModel)]="studentData.studprogid" required >
+                <option *ngFor="let program of programCollection" [value]="program.progid">
+                  {{ program.progfullname }}
+                </option>
+              </select>
+            </td>
+          </tr>
+        <tr>
+            <td>Year</td>
+            <td><input type="text" [(ngModel)]="studentData.studyear" required></td>
+        </tr>
+        <tr>
+            <td hidden></td>
+            <td colspan="2">
+              <button (click)="handleBack()">Back</button>
+              <button (click)="deleteStudent(studid = studentData.studid)">Delete</button>
+              <button (click)="updateStudentInfo()">Update</button> 
+            </td>
+        </tr>
+    </table>
+</div>
+
+

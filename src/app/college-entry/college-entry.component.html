@@ -1,0 +1,60 @@
+<div class="table-list">
+    <h1>List of Colleges</h1>
+    <div *ngIf="errorMessage" class="error error-text">{{ errorMessage | json }}</div>
+  <button class="add-button" (click)="openAddCollegeForm()">Add College</button>
+    <table id="college-list" *ngIf="showCollegeList">
+      <thead>
+        <tr>
+          <th>College ID</th>
+          <th>College Full Name</th>
+          <th>College Short Name</th>         
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let college of collegeCollection">
+          <td> {{ college.collid }} </td>
+          <td> {{ college.collfullname }} </td>
+          <td> {{ college.collshortname }} </td>
+          <td>
+            <button (click)="showCollegeDetails(selectedCollegeID = college.collid)">Details</button>
+            <button (click)="showEditPage(selectedCollegeID = college.collid)">Edit</button>
+            <button (click)="deleteCollege(selectedCollegeID = college.collid)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="collegeCollection.length < 1">
+          <td colspan="8" class="no-data">No Data Found</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+
+<div *ngIf="showAddCollegeForm" class="overlay">
+  <div class="popup-container">
+    <form name="form" #collegeForm="ngForm" class="popup-form">
+    <table>
+      <tr>
+        <td><label for="collid">College ID</label></td>
+        <td><input type="text" name="collid" [(ngModel)]="collegeData.collid" required [ngModelOptions]="{standalone: true}"></td>
+      </tr>
+      <tr>
+        <td><label for="collfullname">Full Name</label></td>
+        <td><input type="text" name="collfullname"  [(ngModel)]="collegeData.collfullname" required [ngModelOptions]="{standalone: true}"></td>
+      </tr>
+      <tr>
+        <td><label for="collshortname" >Short Name</label></td>
+        <td><input type="text" name="collshortname" [(ngModel)]="collegeData.collshortname" required [ngModelOptions]="{standalone: true}"></td>
+      </tr>
+      <tr>
+        <td hidden></td>
+        <td colspan="2">
+          <button type="submit" class="cancel" (click)="closeAddCollegeForm()">Cancel</button>
+          <button type="submit" class="clear" (click)="clearForm()">Clear Entries</button>
+          <button type="submit" class="submit" (click)="submitAddCollegeForm()">Add College</button> 
+        </td>
+      </tr>
+    </table>  
+  </form>
+</div>
+

@@ -1,0 +1,44 @@
+
+<div>
+    <table>
+        <tr>
+            <td>Student ID</td>
+            <td>{{studentData.studid}}</td>
+        </tr>
+        <tr>
+            <td>First Name</td>
+            <td>{{studentData.studfirstname}}</td>
+        </tr>
+        <tr>
+            <td>Middle Name</td>
+            <td>{{studentData.studmidname}}</td>
+        </tr>
+        <tr>
+            <td>Last Name</td>
+            <td>{{studentData.studlastname}}</td>
+        </tr>
+        <tr>
+            <td>College</td>
+            <td><input [(ngModel)]="studentData.studcollid" disabled hidden>{{ collegeData.collfullname }}</td>
+        </tr>          
+        <tr>
+            <td>Program</td>
+            <td><input [(ngModel)]="studentData.studcollid" disabled hidden>{{ programData.progfullname }}</td>
+        </tr>
+        <tr>
+            <td>Year</td>
+            <td>{{studentData.studyear}}</td>
+        </tr>
+        <tr>
+            <td hidden></td>
+            <td colspan="2">
+                <button (click)="handleBack()">Back</button>
+                <button (click)="deleteStudent(studid = studentData.studid)">Delete</button>
+                <button (click)="showEditPage(studentData.studid)">Edit</button>
+            </td>
+        </tr>
+    </table>
+    
+</div>
+
+

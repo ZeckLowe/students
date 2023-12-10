@@ -1,0 +1,73 @@
+<div class="table-list">
+    <h1>List of Departments</h1>
+    <div *ngIf="errorMessage" class="error error-text">{{ errorMessage | json }}</div>
+    <button class="add-button" (click)="openAddDepartmentForm()">Add Department</button>
+    <table id="dept-list" *ngIf="showDeptList">
+        <thead>
+          <tr>
+            <th>Department ID</th>
+            <th>College ID</th>
+            <th>Department Full Name</th>
+            <th>Department Short Name</th>         
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dept of deptCollection">
+            <td> {{ dept.deptid }} </td>
+            <td> {{ dept.deptcollid }} </td>
+            <td> {{ dept.deptfullname }} </td>
+            <td> {{ dept.deptshortname }} </td>
+            <td>
+              <button (click)="showDeptDetails(selectedDeptID = dept.deptid)">Details</button>
+              <button (click)="showEditPage(selectedDeptID = dept.deptid)">Edit</button>
+              <button (click)="deleteDepartment(selectedDeptID = dept.deptid)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="deptCollection.length < 1">
+            <td colspan="8" class="no-data">No Data Found</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+  <div *ngIf="showAddDeptForm" class="overlay">
+    <div class="popup-container">
+      <form name="form" #collegeForm="ngForm" class="popup-form">
+      <table>
+        <tr>
+          <td><label for="deptid">Department ID</label></td>
+          <td><input type="text" name="deptid" [(ngModel)]="deptData.deptid" required [ngModelOptions]="{standalone: true}"></td>
+        </tr>
+        <tr>
+          <td><label for="deptfullname">Full Name</label></td>
+          <td><input type="text" name="deptfullname"  [(ngModel)]="deptData.deptfullname" required [ngModelOptions]="{standalone: true}"></td>
+        </tr>
+        <tr>
+          <td><label for="deptshortname" >Short Name</label></td>
+          <td><input type="text" name="deptshortname" [(ngModel)]="deptData.deptshortname" required [ngModelOptions]="{standalone: true}"></td>
+        </tr>
+        <tr>
+          <td><label for="program">College</label></td>
+          <td>
+            <select id="program" name="program" [(ngModel)]="deptData.deptcollid" required >
+              <option value="" [ngValue]="null">-------------------------------------------------- Select Program --------------------------------------------------</option>
+              <option *ngFor="let college of collegeCollection" [value]="college.collid">
+                {{ college.collfullname }}
+              </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td hidden></td>
+          <td colspan="2">
+            <button type="submit" class="cancel" (click)="closeAddDepartmentForm()">Cancel</button>
+            <button type="submit" class="clear" (click)="clearForm()">Clear Entries</button>
+            <button type="submit" class="submit" (click)="submitAddDeptForm()">Add Department</button>
+          </td>
+        </tr>
+      </table>  
+    </form>
+  </div>
+  
+  

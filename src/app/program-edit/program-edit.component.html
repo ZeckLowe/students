@@ -1,0 +1,44 @@
+<div>
+    <table>
+        <tr>
+            <td>Program ID</td>
+            <td><input type="text" [(ngModel)]="programData.progid" disabled></td>
+        </tr>
+        <tr>
+            <td>Full Name</td>
+            <td><input type="text" [(ngModel)]="programData.progfullname"></td>
+        </tr>
+        <tr>
+            <td>Short Name</td>
+            <td><input type="text" [(ngModel)]="programData.progshortname"></td>
+        </tr>
+        <tr>
+            <td><label for="college">College</label></td>
+            <td>
+              <select id="college" name="college" [(ngModel)]="programData.progcollid" required (change)="updateDepartment()">
+                <option *ngFor="let college of collegeCollection" [value]="college.collid">
+                  {{ college.collfullname }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><label for="program">Department</label></td>
+            <td>
+              <select id="program" name="program" [(ngModel)]="programData.progcolldeptid" required >
+                <option *ngFor="let dept of deptCollection" [value]="dept.deptid">{{ dept.deptfullname }}</option>
+              </select>
+            </td>
+          </tr>
+        <tr>
+            <td hidden></td>
+            <td colspan="2">
+              <button (click)="handleBack()">Back</button>
+              <button (click)="deleteProgram(progid = programData.progid)">Delete</button>
+              <button (click)="updateProgramInfo()">Update</button>   
+            </td>
+        </tr>
+    </table>
+</div>
+
+

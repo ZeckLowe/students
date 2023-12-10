@@ -1,0 +1,36 @@
+<div>
+    <table>
+        <tr>
+            <td>Department ID</td>
+            <td><input type="text" [(ngModel)]="deptData.deptid" disabled></td>
+        </tr>
+        <tr>
+            <td>Full Name</td>
+            <td><input type="text" [(ngModel)]="deptData.deptfullname"></td>
+        </tr>
+        <tr>
+            <td>Short Name</td>
+            <td><input type="text" [(ngModel)]="deptData.deptshortname"></td>
+        </tr>
+        <tr>
+            <td><label for="program">College</label></td>
+            <td>
+              <select id="program" name="program" [(ngModel)]="deptData.deptcollid" required >
+                <option *ngFor="let college of collegeCollection" [value]="college.collid">
+                  {{ college.collfullname }}
+                </option>
+              </select>
+            </td>
+          </tr>
+        <tr>
+            <td hidden></td>
+            <td colspan="2">
+              <button (click)="handleBack()">Back</button>
+              <button (click)="deleteDepartment(deptid = deptData.deptid)">Delete</button>
+              <button (click)="updateDepartmentInfo()">Update</button> 
+            </td>
+        </tr>
+    </table>
+</div>
+
+

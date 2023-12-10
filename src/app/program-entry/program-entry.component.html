@@ -1,0 +1,82 @@
+<div class="table-list">
+  <h1>List of Programs</h1>
+  <div *ngIf="errorMessage" class="error error-text">{{ errorMessage | json }}</div>
+  <button class="add-button" (click)="openAddProgramForm()">Add program</button>
+  <table id="program-list" *ngIf="showProgramList">
+      <thead>
+        <tr>
+          <th>Program ID</th>
+          <th>College ID</th>
+          <th>Department ID</th>
+          <th>Full Name</th>
+          <th>Short Name</th>         
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let program of programCollection">
+          <td> {{ program.progid }} </td>
+          <td> {{ program.progcollid }} </td>
+          <td> {{ program.progcolldeptid }} </td>
+          <td> {{ program.progfullname }} </td>
+          <td> {{ program.progshortname }} </td>
+          <td>
+            <button (click)="showProgramDetails(selectedProgramID = program.progid)">Details</button>
+            <button (click)="showEditPage(selectedProgramID = program.progid)">Edit</button>
+            <button (click)="deleteProgram(selectedProgramID = program.progid)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="programCollection.length < 1">
+          <td colspan="8" class="no-data">No Data Found</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div *ngIf="showAddProgramForm" class="overlay">
+  <div class="popup-container">
+    <form name="form" #studentForm="ngForm" class="popup-form">
+    <table>
+      <tr>
+        <td><label for="progid">Program Id</label></td>
+        <td><input type="text" name="progid" [(ngModel)]="programData.progid" required [ngModelOptions]="{standalone: true}"></td>
+      </tr>
+      <tr>
+        <td><label for="fullname">Full Name</label></td>
+        <td><input type="text" name="fullname"  [(ngModel)]="programData.progfullname" required [ngModelOptions]="{standalone: true}"></td>
+      </tr>
+      <tr>
+        <td><label for="shortname">Short Name</label></td>
+        <td><input type="text" name="shortname" [(ngModel)]="programData.progshortname" [ngModelOptions]="{standalone: true}"></td>
+      </tr>
+      <tr>
+        <td><label for="college">College</label></td>
+        <td>
+          <select id="college" name="college" [(ngModel)]="programData.progcollid" required (change)="updateDepartment()">
+            <option value="" [ngValue]="null">-------------------------------------------------- Select College --------------------------------------------------</option>
+            <option *ngFor="let college of collegeCollection" [value]="college.collid">
+              {{ college.collfullname }}
+            </option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="program">Department</label></td>
+        <td>
+          <select id="program" name="program" [(ngModel)]="programData.progcolldeptid" required >
+            <option value="" [ngValue]="null">-------------------------------------------------- Select Program --------------------------------------------------</option>
+            <option *ngFor="let dept of deptCollection" [value]="dept.deptid">{{ dept.deptfullname }}</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td hidden></td>
+        <td colspan="2">
+          <button type="submit" class="cancel" (click)="closeAddProgramForm()">Cancel</button>
+          <button type="submit" class="clear" (click)="clearForm()">Clear Entries</button>
+          <button type="submit" class="submit" (click)="submitAddProgramForm()">Add Program</button>
+        </td>
+      </tr>
+    </table>  
+  </form>
+</div>
