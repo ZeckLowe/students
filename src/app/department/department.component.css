@@ -1,25 +1,29 @@
+body {
+    background-color: #451952;
+}
+
 .table-list{
     padding:20px;
     margin-top:30px;
     background-color:#ffffff;
     height:1500px;
 }
-#program-list {
-    font-family: Arial, Helvetica, sans-serif;
+#dept-list {
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-#program-list td, #customers th {
+#dept-list td, #customers th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#program-list tr:nth-child(even){background-color: #f2f2f2;}
+#dept-list tr:nth-child(even){background-color: #f2f2f2;}
 
-#program-list tr:hover {background-color: #ddd;}
+#dept-list tr:hover {background-color: #ddd;}
 
-#program-list th {
+#dept-list th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: center;
@@ -48,19 +52,32 @@ h1 {
   float: left;
   margin-top: 60px;
   left: 0;
-  color: #451952;
   margin-bottom: 30px;
+  color: #451952;
   font-family:'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
 }
 
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 1;
+}
 
 .popup-container {
 text-align: left;
+border: 1px solid #ccc;
 padding: 60px;
 border-radius: 10px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 background-color: #fff;
 width: 50%;
-margin-left: 350px;
 }
 
 .popup-container table {
@@ -72,16 +89,13 @@ margin-right: auto;
 }
 
 .popup-container td {
-font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
-color: white;
 padding: 20px;
 border: 1px solid #ddd;
 font-size: 20px;
 }
 
 .popup-container td:first-child {
-font-weight: bold;
-background-color: #451952;
+background-color: #cacaca;
 font-weight: bold;
 width: 20%;
 }
@@ -93,7 +107,7 @@ font-size: 30px;
 }
 
 .popup-container button {
-    background-color: #662549;
+    background-color: #4caf50;
     color: #fff;
     padding: 10px;
     border: none;
@@ -105,7 +119,7 @@ font-size: 30px;
 }
 
 .popup-container button:hover {
-background-color: #AE445A;
+background-color: #45a049;
 }
 
 .popup-container input {
@@ -132,8 +146,8 @@ text-align: center;
 
 .popup-container select:focus {
 outline: none;
-border-color: #662549;
-box-shadow: 0 0 5px #AE445A;
+border-color: #4caf50;
+box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
 }
 
 .popup-container select option {
@@ -146,7 +160,7 @@ background-color: #662549;
 color: #fff;
 padding: 10px;
 border: none;
-border-radius: 6px;
+border-radius: 4px;
 cursor: pointer;
 margin-left: 10px;
 display: flex;

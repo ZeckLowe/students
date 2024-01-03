@@ -9,11 +9,11 @@ import { College } from '../models/collegeModel';
 import { Department } from '../models/departmentModel';
 
 @Component({
-  selector: 'app-program-entry',
-  templateUrl: './program-entry.component.html',
-  styleUrls: ['./program-entry.component.css']
+  selector: 'app-program',
+  templateUrl: './program.component.html',
+  styleUrls: ['./program.component.css']
 })
-export class ProgramEntryComponent {
+export class ProgramComponent {
   ngOnInit(): void {
     this.getPrograms();
     this.getColleges();
@@ -128,8 +128,8 @@ public submitAddProgramForm() {
   }
 
   public openAddProgramForm(){
-    console.log('clicked');
-    this.showAddProgramForm = true;
+    console.log('I am clicked!');
+    this.router.navigate(['/programs/add']);
   }
 
   public clearForm(){
@@ -146,7 +146,8 @@ public submitAddProgramForm() {
   }
 
   public closeAddProgramForm(){
-    this.router.navigate(['/programs']);
+    console.log('I am clicked!');
+    this.router.navigate(['/programs/home']);
   }
 
   public getColleges() {

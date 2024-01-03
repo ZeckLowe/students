@@ -1,0 +1,34 @@
+<div class="table-list">
+    <h1>List of Programs</h1>
+    <div *ngIf="errorMessage" class="error error-text">{{ errorMessage | json }}</div>
+    <button class="add-button" (click)="openAddProgramForm()">Add program</button>
+    <table id="program-list" *ngIf="showProgramList">
+        <thead>
+          <tr>
+            <th>Program ID</th>
+            <th>College ID</th>
+            <th>Department ID</th>
+            <th>Full Name</th>
+            <th>Short Name</th>         
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let program of programCollection">
+            <td> {{ program.progid }} </td>
+            <td> {{ program.progcollid }} </td>
+            <td> {{ program.progcolldeptid }} </td>
+            <td> {{ program.progfullname }} </td>
+            <td> {{ program.progshortname }} </td>
+            <td>
+              <button (click)="showProgramDetails(selectedProgramID = program.progid)">Details</button>
+              <button (click)="showEditPage(selectedProgramID = program.progid)">Edit</button>
+              <button (click)="deleteProgram(selectedProgramID = program.progid)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="programCollection.length < 1">
+            <td colspan="8" class="no-data">No Data Found</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>

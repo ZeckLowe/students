@@ -8,11 +8,11 @@ import { Department } from '../models/departmentModel';
 import { College } from '../models/collegeModel';
 
 @Component({
-  selector: 'app-department-entry',
-  templateUrl: './department-entry.component.html',
-  styleUrls: ['./department-entry.component.css']
+  selector: 'app-department',
+  templateUrl: './department.component.html',
+  styleUrls: ['./department.component.css']
 })
-export class DepartmentEntryComponent {
+export class DepartmentComponent {
   ngOnInit(): void {
     this.getDepartments();
     this.getColleges();
@@ -123,11 +123,12 @@ export class DepartmentEntryComponent {
 
   public openAddDepartmentForm(){
     console.log('clicked');
-    this.router.navigate(['/departments/add'])
+    this.router.navigate(['/departments/add']);
   }
 
   public closeAddDepartmentForm(){
-    this.router.navigate(['/departments'])
+    this.showAddDeptForm = false;
+    this.router.navigate(['']);
   }
 
   public getColleges() {

@@ -9,11 +9,11 @@ import { College } from '../models/collegeModel';
 import { Program } from '../models/programModel';
 
 @Component({
-  selector: 'app-student-entry',
-  templateUrl: './student-entry.component.html',
-  styleUrls: ['./student-entry.component.css']
+  selector: 'app-student',
+  templateUrl: './student.component.html',
+  styleUrls: ['./student.component.css']
 })
-export class StudentEntryComponent {
+export class StudentComponent {
   ngOnInit(): void { 
     this.getStudents();
     this.getColleges();
@@ -26,7 +26,7 @@ export class StudentEntryComponent {
   selectedStudentID: number = 0;
   response: any;
   showStudentList: Boolean = false;
-  showAddStudentForm: boolean = true;
+  showAddStudentForm: boolean = false;
   showStudentInfoForm: boolean = false;
 
   studentData: Student = {
@@ -46,7 +46,6 @@ export class StudentEntryComponent {
   public isNumber(value: any): boolean {
     return /^\d+$/.test(value);
   }
-  
   public isAlphabetic(value: any): boolean {
     return /^[a-zA-Z\s]+$/.test(value);
   }
@@ -82,6 +81,12 @@ export class StudentEntryComponent {
     console.log('I am clicked!');
     console.log(selectedStudentID)
     this.router.navigate(['/students',selectedStudentID]);
+  }
+  
+  public showEditPage(selectedStudentID: number) {
+    console.log('I am clicked!');
+    console.log(selectedStudentID)
+    this.router.navigate(['/students/edit',selectedStudentID]);
   }
 
   public deleteStudent(selectedStudentID: number) {

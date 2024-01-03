@@ -22,15 +22,17 @@ table {
 }
 
 td {
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     padding: 20px;
     border: 1px solid #ddd;
     font-size: 20px;
 }
 
 td:first-child {
-    background-color: #cacaca;
+    background-color: #451952;
     font-weight: bold;
     width: 30%;
+    color: white;
 }
 
 h2 {
@@ -40,7 +42,7 @@ h2 {
 }
 
 button {
-    background-color: #4caf50;
+    background-color: #662549;
     color: #fff;
     padding: 10px;
     border: none;
@@ -52,7 +54,7 @@ button {
 }
   
 button:hover {
-    background-color: #45a049;
+    background-color: #AE445A;
 }
 
 input {
@@ -79,8 +81,8 @@ option {
   
 select:focus {
     outline: none;
-    border-color: #4caf50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+    border-color: #662549;
+    box-shadow: 0 0 5px #AE445A;
 }
   
 select option {

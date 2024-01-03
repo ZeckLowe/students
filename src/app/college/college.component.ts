@@ -7,11 +7,11 @@ import { StudentDataService } from '../student-data.service';
 import { College } from '../models/collegeModel';
 
 @Component({
-  selector: 'app-college-entry',
-  templateUrl: './college-entry.component.html',
-  styleUrls: ['./college-entry.component.css']
+  selector: 'app-college',
+  templateUrl: './college.component.html',
+  styleUrls: ['./college.component.css']
 })
-export class CollegeEntryComponent {
+export class CollegeComponent {
   ngOnInit(): void {
     this.getColleges();
   }
@@ -20,7 +20,7 @@ export class CollegeEntryComponent {
   selectedCollegeID: number = 0;
   response: any;
   showCollegeList: Boolean = false;
-  showAddCollegeForm: boolean = true;
+  showAddCollegeForm: boolean = false;
 
   collegeData: College = {
     collid: 0,
@@ -116,11 +116,11 @@ export class CollegeEntryComponent {
 
   public openAddCollegeForm(){
     console.log('clicked');
-    this.showAddCollegeForm = true;
+    this.router.navigate(['/colleges/add']);
   }
 
   public closeAddCollegeForm(){
-    this.router.navigate(['/colleges']);
+    this.showAddCollegeForm = false;
   }
 
   public clearForm(){

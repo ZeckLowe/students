@@ -12,8 +12,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: orange;
-    padding: 30px 40px;
+    background-color: #f39f5a;
+    padding: 20px 20px;
     z-index: 1000;
   }
   
@@ -24,8 +24,8 @@ body {
   }
   
   .brand-text {
-    color: white;
-    font-size: 1.5em;
+    color: #662549;
+    font-size: 1 em;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
   }
@@ -38,19 +38,20 @@ body {
   .nav a {
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;
-    color: white;
+    color: #662549;
     font-weight: bold;
-    font-size: 1.2em;
-    margin-left: 50px;
+    font-size: 1 em;
+    margin-left: 20px;
     margin-right: 20px;
+    border-width: 1px;
     border: #000000;
   }
   
   .nav a:hover {
-    color: #ffcc00;
+    color: #AE445A;
   }
   
   .nav a.active {
-    color: #ffcc00;
+    color: #AE445A;
   }
   

@@ -23,6 +23,10 @@ import { CollegeEditComponent } from './college-edit/college-edit.component';
 import { CollegeDetailsComponent } from './college-details/college-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StudentDataService } from './student-data.service';
+import { ProgramComponent } from './program/program.component';
+import { DepartmentComponent } from './department/department.component';
+import { CollegeComponent } from './college/college.component';
+import { StudentComponent } from './student/student.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { StudentDataService } from './student-data.service';
     DepartmentDetailsComponent,
     CollegeEntryComponent,
     CollegeEditComponent,
-    CollegeDetailsComponent
+    CollegeDetailsComponent,
+    ProgramComponent,
+    DepartmentComponent,
+    CollegeComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,
